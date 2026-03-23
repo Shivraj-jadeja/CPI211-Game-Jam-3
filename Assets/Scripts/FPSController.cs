@@ -4,30 +4,34 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     [Header("Movement")]
-    public float speed = 0.08f;
+    public float speed = 6f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 1.5f;
 
     [Header("Mouse Look")]
     public float mouseSensitivity = 100f;
     public Transform cameraTransform;
 
-    private float xRotation = 0f;
-    private CharacterController controller;
-    private float lockedY;
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+
+    float xRotation = 0f;
+    Vector3 velocity;
+    bool isGrounded;
+
+    CharacterController controller;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        lockedY = transform.position.y;
-
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
     {
-        if (cameraTransform == null || controller == null)
-            return;
-
+        // --------- MOUSE LOOK ---------
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -37,14 +41,29 @@ public class FPSController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
 
+        // --------- GROUND CHECK ---------
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        // --------- MOVEMENT (WASD) ---------
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
 
-        Vector3 pos = transform.position;
-        pos.y = lockedY;
-        transform.position = pos;
+        // --------- JUMP ---------
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        // --------- GRAVITY ---------
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }
