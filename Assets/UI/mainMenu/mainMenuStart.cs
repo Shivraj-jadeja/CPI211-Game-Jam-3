@@ -7,10 +7,21 @@ public class mainMenuStart : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKeyDown && !keyPressed)
+        if (!keyPressed)
         {
-            keyPressed = true;
-            SceneManager.LoadScene(0);
+            // loads main scene or game when space is pressed
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                keyPressed = true;
+                SceneManager.LoadScene(0);
+            }
+
+            // loads themes scene
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                keyPressed = true;
+                SceneManager.LoadScene(3);
+            }
         }
     }
 }
