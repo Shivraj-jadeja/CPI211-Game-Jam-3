@@ -9,12 +9,12 @@ public class FPSController : MonoBehaviour
     public float jumpHeight = 1.5f;
 
     [Header("Mouse Look")]
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 50f;
     public Transform cameraTransform;
 
     [Header("Ground Check")]
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.2f;
     public LayerMask groundMask;
 
     float xRotation = 0f;
