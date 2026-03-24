@@ -15,8 +15,12 @@ public class SimpleMonsterChase : MonoBehaviour
     public Transform monsterVisual;
 
     [Header("Visual Rotation")]
+    public float idleModelYRotation = 90f;
     public float chaseModelYRotation = 20f;
     public float attackModelYRotation = 90f;
+
+    [Header("Animation")]
+    public bool freezeAnimatorUntilChase = true;
 
     [Header("Chase")]
     public bool chaseActive = false;
@@ -38,6 +42,8 @@ public class SimpleMonsterChase : MonoBehaviour
 
     void Start()
     {
+        chaseActive = false;
+
         if (agent == null)
             agent = GetComponent<NavMeshAgent>();
 
@@ -50,12 +56,10 @@ public class SimpleMonsterChase : MonoBehaviour
         if (playerCamera != null)
             cameraLocalStartPos = playerCamera.localPosition;
 
-        if (monsterVisual != null)
-        {
-            Vector3 angles = monsterVisual.localEulerAngles;
-            angles.y = chaseModelYRotation;
-            monsterVisual.localEulerAngles = angles;
-        }
+        SetModelYRotation(idleModelYRotation);
+
+        if (freezeAnimatorUntilChase && animator != null)
+            animator.speed = 0f;
 
         if (agent != null && !agent.isOnNavMesh)
         {
@@ -110,15 +114,13 @@ public class SimpleMonsterChase : MonoBehaviour
         if (playerController != null)
             playerController.enabled = false;
 
-        if (monsterVisual != null)
-        {
-            Vector3 angles = monsterVisual.localEulerAngles;
-            angles.y = attackModelYRotation;
-            monsterVisual.localEulerAngles = angles;
-        }
+        SetModelYRotation(attackModelYRotation);
 
         if (animator != null)
+        {
+            animator.speed = 1f;
             animator.SetTrigger("Attack");
+        }
 
         float elapsed = 0f;
         Quaternion startRotation = playerCamera.rotation;
@@ -184,12 +186,10 @@ public class SimpleMonsterChase : MonoBehaviour
         if (agent != null)
             agent.isStopped = false;
 
-        if (monsterVisual != null)
-        {
-            Vector3 angles = monsterVisual.localEulerAngles;
-            angles.y = chaseModelYRotation;
-            monsterVisual.localEulerAngles = angles;
-        }
+        SetModelYRotation(chaseModelYRotation);
+
+        if (animator != null)
+            animator.speed = 1f;
     }
 
     public void StopChase()
@@ -198,5 +198,20 @@ public class SimpleMonsterChase : MonoBehaviour
 
         if (agent != null && agent.isOnNavMesh)
             agent.ResetPath();
+
+        SetModelYRotation(idleModelYRotation);
+
+        if (freezeAnimatorUntilChase && animator != null && !isAttacking)
+            animator.speed = 0f;
+    }
+
+    void SetModelYRotation(float yRotation)
+    {
+        if (monsterVisual == null)
+            return;
+
+        Vector3 angles = monsterVisual.localEulerAngles;
+        angles.y = yRotation;
+        monsterVisual.localEulerAngles = angles;
     }
 }
