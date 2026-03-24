@@ -36,6 +36,8 @@ public class SimpleMonsterChase : MonoBehaviour
     private bool isAttacking = false;
     private Vector3 cameraLocalStartPos;
 
+    public AudioSource stepAudio;
+
     void Start()
     {
         if (agent == null)
@@ -176,6 +178,7 @@ public class SimpleMonsterChase : MonoBehaviour
 
     public void StartChase()
     {
+        stepAudio.Play();
         if (isAttacking)
             return;
 
@@ -194,6 +197,7 @@ public class SimpleMonsterChase : MonoBehaviour
 
     public void StopChase()
     {
+        stepAudio.Pause();
         chaseActive = false;
 
         if (agent != null && agent.isOnNavMesh)

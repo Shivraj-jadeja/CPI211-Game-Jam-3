@@ -11,6 +11,7 @@ public class SyringeInteract : MonoBehaviour
     private bool isMoving = false;
     public float range = 5f;
     public LayerMask Patient;
+    public AudioSource AudioSource;
     private void Awake()
     {
         startLocalPos = transform.localPosition;
@@ -64,6 +65,7 @@ public class SyringeInteract : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range, Patient))
         {
             Debug.Log("Hit: " + hit.collider.name + " at distance: " + hit.distance);
+            AudioSource.Play();
         }
         else
         {

@@ -22,11 +22,15 @@ public class FPSController : MonoBehaviour
     bool isGrounded;
 
     CharacterController controller;
+    public AudioSource footstepSfx;
+    float prevX;
+    float prevZ;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        footstepSfx = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -55,6 +59,20 @@ public class FPSController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
+        if((x != prevX) || (z != prevZ))
+        {
+            if (!footstepSfx.isPlaying)
+            {
+                footstepSfx.Play();
+            }
+        }
+        else
+        {
+            footstepSfx.Pause();
+        }
+
+            prevX = x;
+        prevZ = z;
 
         // --------- JUMP ---------
         if (Input.GetButtonDown("Jump") && isGrounded)
