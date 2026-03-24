@@ -45,6 +45,9 @@ public class FPSController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
 
+        if (!GameManager.Instance.canPlayerMove)
+        return;
+
         // --------- GROUND CHECK ---------
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
