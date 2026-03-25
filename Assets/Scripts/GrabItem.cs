@@ -5,7 +5,12 @@ public class GrabItem : MonoBehaviour
     public float grabRange = 3f;
     public Transform holdPoint;
 
-    GameObject heldItem;
+    private GameObject heldItem;
+
+    public GameObject GetHeldItem()
+    {
+        return heldItem;
+    }
 
     void Update()
     {
@@ -24,6 +29,18 @@ public class GrabItem : MonoBehaviour
 
     void TryGrab()
     {
+        if (Camera.main == null)
+        {
+            Debug.LogError("No MainCamera found. Tag your player camera as MainCamera.");
+            return;
+        }
+
+        if (holdPoint == null)
+        {
+            Debug.LogError("HoldPoint is not assigned in GrabItem.");
+            return;
+        }
+
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
 
@@ -32,7 +49,20 @@ public class GrabItem : MonoBehaviour
             if (hit.collider.CompareTag("Grabbable"))
             {
                 heldItem = hit.collider.gameObject;
-                heldItem.GetComponent<Rigidbody>().isKinematic = true;
+
+                Rigidbody rb = heldItem.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.isKinematic = true;
+                    rb.useGravity = false;
+                }
+
+                Collider col = heldItem.GetComponent<Collider>();
+                if (col != null)
+                {
+                    col.enabled = false;
+                }
+
                 heldItem.transform.position = holdPoint.position;
                 heldItem.transform.parent = holdPoint;
             }
@@ -41,7 +71,22 @@ public class GrabItem : MonoBehaviour
 
     void DropItem()
     {
-        heldItem.GetComponent<Rigidbody>().isKinematic = false;
+        if (heldItem == null)
+            return;
+
+        Rigidbody rb = heldItem.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+        }
+
+        Collider col = heldItem.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+
         heldItem.transform.parent = null;
         heldItem = null;
     }
