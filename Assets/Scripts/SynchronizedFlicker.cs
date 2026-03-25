@@ -2,68 +2,113 @@ using UnityEngine;
 
 public class SynchronizedFlicker : MonoBehaviour
 {
-    public Light[] flickerLights;
+    [System.Serializable]
+    public class FlickerLightEntry
+    {
+        public Light lightSource;
+        public float baseIntensity = 1f;
+    }
 
-    public float baseIntensity = 0.004f;
-    public float flickerIntensity = 0.0007f;
+    public FlickerLightEntry[] lights;
 
-    public float minTimeBetweenFlickers = 0.5f;
-    public float maxTimeBetweenFlickers = 0.9f;
+    [Header("Flicker Multiplier")]
+    public float minFlickerMultiplier = 0f;
+    public float maxFlickerMultiplier = 0.2f;
 
-    public float flickerDuration = 0.08f;
-    public bool randomizeFlickerDuration = true;
+    [Header("Timing")]
+    public float minTimeBetweenBursts = 2.5f;
+    public float maxTimeBetweenBursts = 4f;
 
-    private float timer;
-    private float flickerTimer;
+    public float burstDuration = 0.6f;
+    public bool randomizeBurstDuration = true;
+    public float minBurstDuration = 0.45f;
+    public float maxBurstDuration = 0.75f;
+
+    [Header("Step Timing")]
+    public float minStepTime = 0.14f;
+    public float maxStepTime = 0.22f;
+
+    [Header("Blackout")]
+    public bool allowFullBlackoutDip = true;
+    [Range(0f, 1f)]
+    public float blackoutChance = 0.8f;
+
+    [Header("Startup Randomness")]
+    public bool randomizeInitialOffset = true;
+
+    private float waitTimer;
+    private float burstTimer;
+    private float stepTimer;
     private bool isFlickering;
 
     void Start()
     {
-        SetAllLights(baseIntensity);
-        SetNextFlickerTime();
+        SetMultiplier(1f);
+
+        if (randomizeInitialOffset)
+            waitTimer = Random.Range(0f, maxTimeBetweenBursts);
+        else
+            SetNextBurstTime();
     }
 
     void Update()
     {
+        if (lights == null || lights.Length == 0) return;
+
         if (!isFlickering)
         {
-            timer -= Time.deltaTime;
+            waitTimer -= Time.deltaTime;
 
-            if (timer <= 0f)
+            if (waitTimer <= 0f)
             {
                 isFlickering = true;
-                flickerTimer = randomizeFlickerDuration
-                    ? Random.Range(flickerDuration * 0.5f, flickerDuration * 1.5f)
-                    : flickerDuration;
+
+                if (randomizeBurstDuration)
+                    burstTimer = Random.Range(minBurstDuration, maxBurstDuration);
+                else
+                    burstTimer = burstDuration;
+
+                stepTimer = 0f;
             }
         }
         else
         {
-            flickerTimer -= Time.deltaTime;
+            burstTimer -= Time.deltaTime;
+            stepTimer -= Time.deltaTime;
 
-            float currentIntensity = Random.Range(flickerIntensity, baseIntensity);
-            SetAllLights(currentIntensity);
+            if (stepTimer <= 0f)
+            {
+                float multiplier;
 
-            if (flickerTimer <= 0f)
+                if (allowFullBlackoutDip && Random.value < blackoutChance)
+                    multiplier = 0f;
+                else
+                    multiplier = Random.Range(minFlickerMultiplier, maxFlickerMultiplier);
+
+                SetMultiplier(multiplier);
+                stepTimer = Random.Range(minStepTime, maxStepTime);
+            }
+
+            if (burstTimer <= 0f)
             {
                 isFlickering = false;
-                SetAllLights(baseIntensity);
-                SetNextFlickerTime();
+                SetMultiplier(1f);
+                SetNextBurstTime();
             }
         }
     }
 
-    void SetNextFlickerTime()
+    void SetNextBurstTime()
     {
-        timer = Random.Range(minTimeBetweenFlickers, maxTimeBetweenFlickers);
+        waitTimer = Random.Range(minTimeBetweenBursts, maxTimeBetweenBursts);
     }
 
-    void SetAllLights(float intensity)
+    void SetMultiplier(float multiplier)
     {
-        foreach (Light l in flickerLights)
+        foreach (var entry in lights)
         {
-            if (l != null)
-                l.intensity = intensity;
+            if (entry.lightSource != null)
+                entry.lightSource.intensity = entry.baseIntensity * multiplier;
         }
     }
 }
