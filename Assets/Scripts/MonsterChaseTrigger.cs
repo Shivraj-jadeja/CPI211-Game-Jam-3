@@ -19,7 +19,7 @@ public class MonsterChaseTrigger : MonoBehaviour
         {
             Debug.Log("[Trigger] Player entered chase trigger");
             triggered = true;
-            StartCoroutine(StartChaseWithDelay());
+            StartCoroutine(StartChaseSequence());
         }
         else
         {
@@ -27,15 +27,15 @@ public class MonsterChaseTrigger : MonoBehaviour
         }
     }
 
-    IEnumerator StartChaseWithDelay()
+    IEnumerator StartChaseSequence()
     {
-        Debug.Log("[Trigger] Waiting " + delayBeforeChase + " seconds before chase");
+        Debug.Log("[Trigger] Waiting " + delayBeforeChase + " seconds before scream/chase");
         yield return new WaitForSeconds(delayBeforeChase);
 
         if (monsterChase != null)
         {
-            Debug.Log("[Trigger] Calling monsterChase.StartChase()");
-            monsterChase.StartChase();
+            Debug.Log("[Trigger] Calling StartScreamThenChase()");
+            monsterChase.StartScreamThenChase();
         }
         else
         {

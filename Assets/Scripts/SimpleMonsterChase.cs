@@ -21,12 +21,16 @@ public class SimpleMonsterChase : MonoBehaviour
 
     [Header("Animation")]
     public bool freezeAnimatorUntilChase = true;
+    public float screamDuration = 2f;
+    public float screamAnimationSpeed = 0.75f;
+    public float screamFacingYRotation = 0f;
 
     [Header("Chase")]
     public bool chaseActive = false;
     public float repathRate = 0.1f;
     public float sampleRange = 0.75f;
     public float attackDistance = 1.5f;
+    public float chaseTurnSpeed = 8f;
 
     [Header("Attack")]
     public float lookAtDuration = 0.25f;
@@ -41,6 +45,7 @@ public class SimpleMonsterChase : MonoBehaviour
 
     private float timer;
     private bool isAttacking = false;
+    private bool isScreaming = false;
     private Vector3 cameraLocalStartPos;
 
     void Start()
@@ -60,6 +65,9 @@ public class SimpleMonsterChase : MonoBehaviour
 
         if (playerCamera != null)
             cameraLocalStartPos = playerCamera.localPosition;
+
+        if (agent != null)
+            agent.updateRotation = false;
 
         SetModelYRotation(idleModelYRotation);
 
@@ -88,9 +96,7 @@ public class SimpleMonsterChase : MonoBehaviour
             }
         }
 
-        Debug.Log("[Monster] Start complete | player=" + (player != null) +
-                  " | agent=" + (agent != null) +
-                  " | animator=" + (animator != null));
+        Debug.Log("[Monster] Start complete");
     }
 
     void Update()
@@ -98,38 +104,19 @@ public class SimpleMonsterChase : MonoBehaviour
         if (!chaseActive)
             return;
 
-        if (player == null)
-        {
-            Debug.LogError("[Monster] Player reference is NULL");
+        if (player == null || agent == null || !agent.enabled)
             return;
-        }
 
-        if (agent == null)
-        {
-            Debug.LogError("[Monster] Agent reference is NULL");
-            return;
-        }
-
-        if (!agent.enabled)
-        {
-            Debug.LogWarning("[Monster] Agent is disabled");
-            return;
-        }
-
-        if (isAttacking)
+        if (isAttacking || isScreaming)
             return;
 
         if (!agent.isOnNavMesh)
-        {
-            Debug.LogWarning("[Monster] Agent is not on NavMesh during chase");
             return;
-        }
 
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance <= attackDistance)
         {
-            Debug.Log("[Monster] Player in attack distance");
             StartCoroutine(StartAttack());
             return;
         }
@@ -142,23 +129,67 @@ public class SimpleMonsterChase : MonoBehaviour
             if (NavMesh.SamplePosition(player.position, out hit, sampleRange, NavMesh.AllAreas))
             {
                 agent.SetDestination(hit.position);
-                Debug.Log("[Monster] SetDestination -> " + hit.position);
-            }
-            else
-            {
-                Debug.LogWarning("[Monster] Could not sample player position on NavMesh");
             }
 
             timer = repathRate;
         }
+
+        RotateTowardsMovement();
+    }
+
+    public void StartScreamThenChase()
+    {
+        Debug.Log("[Monster] StartScreamThenChase() called");
+
+        if (isAttacking || isScreaming || chaseActive)
+        {
+            Debug.LogWarning("[Monster] Cannot start scream/chase right now");
+            return;
+        }
+
+        StartCoroutine(ScreamThenChaseRoutine());
+    }
+
+    IEnumerator ScreamThenChaseRoutine()
+    {
+        Debug.Log("[Monster] Scream routine started");
+        isScreaming = true;
+        chaseActive = false;
+
+        if (agent != null)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+        }
+
+        FacePlayerOnce();
+        SetModelYRotation(screamFacingYRotation);
+
+        if (animator != null)
+        {
+            animator.speed = screamAnimationSpeed;
+            animator.ResetTrigger("Attack");
+            animator.ResetTrigger("Scream");
+            animator.SetTrigger("Scream");
+            Debug.Log("[Monster] Scream trigger set");
+        }
+        else
+        {
+            Debug.LogWarning("[Monster] Animator missing");
+        }
+
+        yield return new WaitForSeconds(screamDuration / screamAnimationSpeed);
+
+        Debug.Log("[Monster] Scream finished -> StartChase()");
+        isScreaming = false;
+        StartChase();
     }
 
     IEnumerator StartAttack()
     {
-        Debug.Log("[Monster] StartAttack called");
-
         isAttacking = true;
         chaseActive = false;
+        isScreaming = false;
 
         if (stepAudio != null)
             stepAudio.Pause();
@@ -187,12 +218,9 @@ public class SimpleMonsterChase : MonoBehaviour
         {
             if (playerCamera != null)
             {
-                Vector3 targetPos;
-
-                if (monsterLookTarget != null)
-                    targetPos = monsterLookTarget.position;
-                else
-                    targetPos = transform.position + Vector3.up * 1.4f;
+                Vector3 targetPos = monsterLookTarget != null
+                    ? monsterLookTarget.position
+                    : transform.position + Vector3.up * 1.4f;
 
                 Vector3 direction = targetPos - playerCamera.position;
 
@@ -230,38 +258,23 @@ public class SimpleMonsterChase : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("[Monster] GAME OVER");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartChase()
     {
-        Debug.Log("[Monster] StartChase called");
+        Debug.Log("[Monster] StartChase() called");
 
         if (isAttacking)
-        {
-            Debug.LogWarning("[Monster] Cannot start chase, already attacking");
             return;
-        }
 
         chaseActive = true;
 
         if (stepAudio != null)
             stepAudio.Play();
-        else
-            Debug.LogWarning("[Monster] Step Audio is not assigned");
 
         if (agent != null)
-        {
             agent.isStopped = false;
-            Debug.Log("[Monster] Agent enabled=" + agent.enabled + " | onNavMesh=" + agent.isOnNavMesh);
-        }
-        else
-        {
-            Debug.LogError("[Monster] Agent is NULL in StartChase");
-        }
-
-        SetModelYRotation(chaseModelYRotation);
 
         if (animator != null)
             animator.speed = 1f;
@@ -269,12 +282,11 @@ public class SimpleMonsterChase : MonoBehaviour
 
     public void StopChase()
     {
-        Debug.Log("[Monster] StopChase called");
-
         if (stepAudio != null)
             stepAudio.Pause();
 
         chaseActive = false;
+        isScreaming = false;
 
         if (agent != null && agent.isOnNavMesh)
             agent.ResetPath();
@@ -283,6 +295,39 @@ public class SimpleMonsterChase : MonoBehaviour
 
         if (freezeAnimatorUntilChase && animator != null && !isAttacking)
             animator.speed = 0f;
+    }
+
+    void FacePlayerOnce()
+    {
+        if (player == null)
+            return;
+
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        transform.rotation = Quaternion.LookRotation(direction.normalized);
+    }
+
+    void RotateTowardsMovement()
+    {
+        if (agent == null)
+            return;
+
+        Vector3 direction = agent.desiredVelocity;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction.normalized);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            chaseTurnSpeed * Time.deltaTime
+        );
     }
 
     void SetModelYRotation(float yRotation)

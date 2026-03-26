@@ -57548,7 +57548,7 @@ MonoBehaviour:
   doorPivot: {fileID: 500750480}
   openAngle: -90
   openSpeed: 2
-  interactPromptUI: {fileID: 599220344}
+  interactPromptUI: {fileID: 589301926}
 --- !u!1 &500785477
 GameObject:
   m_ObjectHideFlags: 0
@@ -70868,7 +70868,7 @@ Transform:
   m_GameObject: {fileID: 622509609}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -52, y: 0.144, z: -35}
+  m_LocalPosition: {x: -42.98, y: 0.144, z: 14.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139731,10 +139731,14 @@ MonoBehaviour:
   chaseModelYRotation: 20
   attackModelYRotation: 90
   freezeAnimatorUntilChase: 1
-  chaseActive: 1
+  screamDuration: 2.8
+  screamAnimationSpeed: 0.75
+  screamFacingYRotation: 0
+  chaseActive: 0
   repathRate: 0.1
   sampleRange: 0.5
   attackDistance: 1.5
+  chaseTurnSpeed: 8
   lookAtDuration: 0.4
   gameOverDelay: 2.5
   shakeAmount: 0.04
@@ -139816,7 +139820,7 @@ Transform:
   m_GameObject: {fileID: 1215317158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.96639, y: 0.21, z: 18.122179}
+  m_LocalPosition: {x: -53.47, y: 0.21, z: 18.122179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -207732,7 +207736,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3.5
+  m_Radius: 8.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1770818799
 PrefabInstance:
