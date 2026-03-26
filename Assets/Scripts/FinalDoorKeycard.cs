@@ -41,26 +41,55 @@ public class FinalDoorKeycard : MonoBehaviour
     void Update()
     {
         if (isOpen || isAnimating)
+        {
+            HidePrompt();
             return;
+        }
+
+        if (playerCamera == null)
+        {
+            HidePrompt();
+            return;
+        }
 
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
+
+        bool lookingAtDoor = false;
 
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
             if (hit.transform == transform || hit.transform.IsChildOf(transform))
             {
-                if (Input.GetKeyDown(interactKey))
-                {
-                    if (PlayerIsHoldingKeycard())
-                    {
-                        StartCoroutine(OpenDoor());
-                    }
-                    else
-                    {
-                        ShowMessage("Requires Keycard to Exit!");
-                    }
-                }
+                lookingAtDoor = true;
+            }
+        }
+
+        if (!lookingAtDoor)
+        {
+            HidePrompt();
+            return;
+        }
+
+        if (PlayerIsHoldingKeycard())
+        {
+            ShowPrompt("Press E to Open");
+        }
+        else
+        {
+            HidePrompt();
+        }
+
+        if (Input.GetKeyDown(interactKey))
+        {
+            if (PlayerIsHoldingKeycard())
+            {
+                HidePrompt();
+                StartCoroutine(OpenDoor());
+            }
+            else
+            {
+                ShowTimedMessage("Requires Keycard to Exit!");
             }
         }
     }
@@ -88,7 +117,32 @@ public class FinalDoorKeycard : MonoBehaviour
         isAnimating = false;
     }
 
-    void ShowMessage(string message)
+    void ShowPrompt(string message)
+    {
+        if (promptText == null)
+            return;
+
+        if (messageRoutine != null)
+        {
+            StopCoroutine(messageRoutine);
+            messageRoutine = null;
+        }
+
+        promptText.text = message;
+        if (!promptText.gameObject.activeSelf)
+            promptText.gameObject.SetActive(true);
+    }
+
+    void HidePrompt()
+    {
+        if (promptText == null)
+            return;
+
+        if (messageRoutine == null)
+            promptText.gameObject.SetActive(false);
+    }
+
+    void ShowTimedMessage(string message)
     {
         if (promptText == null)
             return;
@@ -106,6 +160,7 @@ public class FinalDoorKeycard : MonoBehaviour
 
         yield return new WaitForSeconds(messageTime);
 
+        messageRoutine = null;
         promptText.gameObject.SetActive(false);
     }
 }
