@@ -16,6 +16,9 @@ public class DoorInteract : MonoBehaviour
     [Header("UI")]
     public GameObject interactPromptUI;
 
+    [Header("Audio")]
+    public AudioSource doorAudio;
+
     private bool isOpen = false;
     private bool isMoving = false;
 
@@ -48,6 +51,9 @@ public class DoorInteract : MonoBehaviour
 
             if (Input.GetKeyDown(interactKey) && !isMoving)
             {
+                if (doorAudio != null)
+                    doorAudio.Play();
+
                 StartCoroutine(RotateDoor(isOpen ? closedRotation : openRotation));
                 isOpen = !isOpen;
             }

@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EndingVideoManager : MonoBehaviour
 {
     public static EndingVideoManager Instance;
 
     public VideoPlayer videoPlayer;
-    public string mainMenuSceneName = "UI_MainMenu";
+    public string mainMenuSceneName = "MainMenu";
 
     private bool isPlaying = false;
 
@@ -19,7 +20,8 @@ public class EndingVideoManager : MonoBehaviour
         {
             videoPlayer.playOnAwake = false;
             videoPlayer.isLooping = false;
-            videoPlayer.loopPointReached += OnVideoFinished;
+            videoPlayer.skipOnDrop = false;
+            videoPlayer.waitForFirstFrame = true;
         }
     }
 
@@ -29,26 +31,37 @@ public class EndingVideoManager : MonoBehaviour
 
         isPlaying = true;
 
-        // Stop player movement if you have a GameManager
         if (GameManager.Instance != null)
         {
             GameManager.Instance.canPlayerMove = false;
         }
 
+        StartCoroutine(PlayAndReturnToMenu());
+    }
+
+    private IEnumerator PlayAndReturnToMenu()
+    {
         videoPlayer.gameObject.SetActive(true);
-        videoPlayer.Play();
-    }
 
-    private void OnVideoFinished(VideoPlayer vp)
-    {
-        SceneManager.LoadScene(mainMenuSceneName);
-    }
+        videoPlayer.Prepare();
 
-    private void OnDestroy()
-    {
-        if (videoPlayer != null)
+        while (!videoPlayer.isPrepared)
         {
-            videoPlayer.loopPointReached -= OnVideoFinished;
+            yield return null;
         }
+
+        videoPlayer.Play();
+
+        while (!videoPlayer.isPlaying)
+        {
+            yield return null;
+        }
+
+        while (videoPlayer.isPlaying)
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }
