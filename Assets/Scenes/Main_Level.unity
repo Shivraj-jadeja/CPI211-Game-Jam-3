@@ -1673,10 +1673,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 880ce08daf1251d45abc3fc80209a928, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 953731835}
+      addedObject: {fileID: 953731838}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 880ce08daf1251d45abc3fc80209a928, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 953731838}
+      addedObject: {fileID: 953731841}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 880ce08daf1251d45abc3fc80209a928, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 953731842}
   m_SourcePrefab: {fileID: 100100000, guid: 880ce08daf1251d45abc3fc80209a928, type: 3}
 --- !u!1001 &16178829
 PrefabInstance:
@@ -8105,15 +8108,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.234
+      value: 8.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.214
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.573
+      value: -11.27
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17325,13 +17328,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &160850878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27923,6 +27933,169 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261664774}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &261794439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261794444}
+  - component: {fileID: 261794443}
+  - component: {fileID: 261794442}
+  - component: {fileID: 261794441}
+  - component: {fileID: 261794440}
+  - component: {fileID: 261794445}
+  m_Layer: 0
+  m_Name: Patient2Trigger
+  m_TagString: PatientTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &261794440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261794439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b798c2cc91e96804280db4f399e93267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientTrigger
+  patientNum: 2
+--- !u!65 &261794441
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261794439}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &261794442
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261794439}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &261794443
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261794439}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &261794444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261794439}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.81, y: 0.52, z: -26.92}
+  m_LocalScale: {x: 10, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684319977}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!328 &261794445
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261794439}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: bb0af333efe37c8458b3bd80852e64d5, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 1970321630}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1001 &263881973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30037,13 +30210,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &284691598
 GameObject:
   m_ObjectHideFlags: 0
@@ -32809,13 +32989,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &308747627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48789,13 +48976,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &463535625
 GameObject:
   m_ObjectHideFlags: 0
@@ -57069,6 +57263,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 86eda9db8acde404785586f1f1183e01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 709366226}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 86eda9db8acde404785586f1f1183e01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 709366232}
   m_SourcePrefab: {fileID: 100100000, guid: 86eda9db8acde404785586f1f1183e01, type: 3}
 --- !u!1001 &544717907
 PrefabInstance:
@@ -67160,13 +67357,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &636101526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77065,6 +77269,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 86eda9db8acde404785586f1f1183e01, type: 3}
   m_PrefabInstance: {fileID: 543732108}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &709366232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709366225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b120e0ee24799bb46a825bab70c781c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SyringeInteract
+  distance: 0.2
+  duration: 0.2
+  range: 5
+  Patient:
+    serializedVersion: 2
+    m_Bits: 128
+  AudioSource: {fileID: 0}
+  vid: {fileID: 0}
+  dead_oldman: {fileID: 0}
+  bedguy_dead: {fileID: 0}
+  nurse_die: {fileID: 0}
 --- !u!1001 &709641982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84940,13 +85167,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &777391990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89665,6 +89899,169 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3865346577621515474, guid: 9c47f20e5f8b1dd4cbc626d2054f124f, type: 3}
   m_PrefabInstance: {fileID: 821108266}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &821372226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821372227}
+  - component: {fileID: 821372232}
+  - component: {fileID: 821372231}
+  - component: {fileID: 821372230}
+  - component: {fileID: 821372229}
+  - component: {fileID: 821372228}
+  m_Layer: 0
+  m_Name: NurseTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &821372227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821372226}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.46, y: 0.06, z: 9.18103}
+  m_LocalScale: {x: 22, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684319977}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!328 &821372228
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821372226}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: caa7f12c17a39d24bbd9eae1b5ba3b15, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 1970321630}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!114 &821372229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821372226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b798c2cc91e96804280db4f399e93267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientTrigger
+  patientNum: 5
+--- !u!65 &821372230
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821372226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &821372231
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821372226}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &821372232
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821372226}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &821471521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97986,13 +98383,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &914152659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101846,25 +102250,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 880ce08daf1251d45abc3fc80209a928, type: 3}
   m_PrefabInstance: {fileID: 14354409}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &953731835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953731833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b120e0ee24799bb46a825bab70c781c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SyringeInteract
-  distance: 0.2
-  duration: 0.6
-  range: 2
-  Patient:
-    serializedVersion: 2
-    m_Bits: 64
-  AudioSource: {fileID: 0}
 --- !u!82 &953731838
 AudioSource:
   m_ObjectHideFlags: 0
@@ -101962,6 +102347,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &953731841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953731833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b120e0ee24799bb46a825bab70c781c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SyringeInteract
+  distance: 0.2
+  duration: 0.2
+  range: 3
+  Patient:
+    serializedVersion: 2
+    m_Bits: 128
+  AudioSource: {fileID: 953731838}
+  vid: {fileID: 0}
+  dead_oldman: {fileID: 0}
+  bedguy_dead: {fileID: 0}
+  nurse_die: {fileID: 0}
+--- !u!328 &953731842
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953731833}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 1970321630}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 1
+  m_TargetAudioSources:
+  - {fileID: 953731838}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1001 &954441185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120502,13 +120946,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1121352455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130548,10 +130999,14 @@ MonoBehaviour:
   chaseModelYRotation: 20
   attackModelYRotation: 90
   freezeAnimatorUntilChase: 1
+  screamDuration: 2
+  screamAnimationSpeed: 0.75
+  screamFacingYRotation: 0
   chaseActive: 0
   repathRate: 0.1
   sampleRange: 0.75
   attackDistance: 1.5
+  chaseTurnSpeed: 8
   lookAtDuration: 0.25
   gameOverDelay: 2.5
   shakeAmount: 0.04
@@ -131373,13 +131828,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1221934632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143886,6 +144348,169 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 456225231834519352, guid: 7dba05b4689d31e43907beadb5ee75a1, type: 3}
   m_PrefabInstance: {fileID: 1328676190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1329077521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1329077522}
+  - component: {fileID: 1329077527}
+  - component: {fileID: 1329077526}
+  - component: {fileID: 1329077525}
+  - component: {fileID: 1329077524}
+  - component: {fileID: 1329077523}
+  m_Layer: 0
+  m_Name: OldManTrigger
+  m_TagString: PatientTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1329077522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329077521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.34, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684319977}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329077523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329077521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b798c2cc91e96804280db4f399e93267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientTrigger
+  patientNum: 1
+--- !u!328 &1329077524
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329077521}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 66c51dc83bdb09c4ea5e98119425a9ac, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 1970321630}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!65 &1329077525
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329077521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1329077526
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329077521}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4f978201d37b79f41a7ed670eadeda6b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1329077527
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329077521}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1330313773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171447,13 +172072,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &1578165387
 GameObject:
   m_ObjectHideFlags: 0
@@ -180114,7 +180746,7 @@ Transform:
   m_GameObject: {fileID: 1646469615}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -53.82, y: 1.48, z: -35.12}
+  m_LocalPosition: {x: -53.809, y: 1.48, z: -35.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -181716,13 +182348,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &1660213240
 GameObject:
   m_ObjectHideFlags: 0
@@ -184143,6 +184782,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5734553347104753089, guid: e29ebedc8fa04b047a5008145757e6e2, type: 3}
   m_PrefabInstance: {fileID: 1684256405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1684319976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684319977}
+  m_Layer: 0
+  m_Name: ParentPatientVidColliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1684319977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684319976}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.97252, y: 0.68644, z: -7.38103}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1329077522}
+  - {fileID: 261794444}
+  - {fileID: 821372227}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1684496825
 GameObject:
   m_ObjectHideFlags: 0
@@ -204623,13 +205296,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1864627199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209406,13 +210086,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1916472670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218032,13 +218719,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1986663392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225688,13 +226382,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &2055282299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235801,13 +236502,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &2143358333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236272,3 +236980,4 @@ SceneRoots:
   - {fileID: 1188751092}
   - {fileID: 1646469618}
   - {fileID: 297006318}
+  - {fileID: 1684319977}

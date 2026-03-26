@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Grabbable
+  - PatientTrigger
+  - POld
+  - PBed
+  - PNurse
+  - PWoman
   layers:
   - Default
   - TransparentFX
