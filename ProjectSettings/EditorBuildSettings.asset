@@ -18,8 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/UI_Themes.unity
     guid: b2fb1d65fb42c484c8fff84137c22121
   - enabled: 1
-    path: Assets/Scenes/Main_Level.unity
-    guid: 35d33e80f783a5047bd32dfa2978eade
+    path: Assets/Scenes/UI_Controls.unity
+    guid: f1e5752e284535245b1a424bf84547b3
+  - enabled: 1
+    path: Assets/Scenes/Backup Llighting + Doors + Scream.unity
+    guid: 6f90e1bd088ce4c46b544ba40cd0ac87
+  - enabled: 1
+    path: Assets/Scenes/UI_Final.unity
+    guid: a1f0a41a8223e5b4cac94f1e04d0ef20
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
