@@ -29,7 +29,7 @@ public class EndingVideoManager : MonoBehaviour
 
         isPlaying = true;
 
-        // Stop player movement if you have a GameManager
+        // Stop player movement
         if (GameManager.Instance != null)
         {
             GameManager.Instance.canPlayerMove = false;
