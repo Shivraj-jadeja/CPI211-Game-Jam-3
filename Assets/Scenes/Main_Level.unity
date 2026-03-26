@@ -8105,15 +8105,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.234
+      value: 8.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.214
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.573
+      value: -11.27
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa7a38551dcdb844a022ef4890162cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17325,13 +17325,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &160850878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30037,13 +30044,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &284691598
 GameObject:
   m_ObjectHideFlags: 0
@@ -32809,13 +32823,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &308747627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48789,13 +48810,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &463535625
 GameObject:
   m_ObjectHideFlags: 0
@@ -67160,13 +67188,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &636101526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84940,13 +84975,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &777391990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97986,13 +98028,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &914152659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120502,13 +120551,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1121352455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130548,10 +130604,14 @@ MonoBehaviour:
   chaseModelYRotation: 20
   attackModelYRotation: 90
   freezeAnimatorUntilChase: 1
+  screamDuration: 2
+  screamAnimationSpeed: 0.75
+  screamFacingYRotation: 0
   chaseActive: 0
   repathRate: 0.1
   sampleRange: 0.75
   attackDistance: 1.5
+  chaseTurnSpeed: 8
   lookAtDuration: 0.25
   gameOverDelay: 2.5
   shakeAmount: 0.04
@@ -131373,13 +131433,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1221934632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171447,13 +171514,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &1578165387
 GameObject:
   m_ObjectHideFlags: 0
@@ -180114,7 +180188,7 @@ Transform:
   m_GameObject: {fileID: 1646469615}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -53.82, y: 1.48, z: -35.12}
+  m_LocalPosition: {x: -53.809, y: 1.48, z: -35.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -181716,13 +181790,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1 &1660213240
 GameObject:
   m_ObjectHideFlags: 0
@@ -204623,13 +204704,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1864627199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209406,13 +209494,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1916472670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218032,13 +218127,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &1986663392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225688,13 +225790,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &2055282299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235801,13 +235910,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d404d0f0d44e3c74fad8179b70b21ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynchronizedFlicker
-  flickerLights: []
-  baseIntensity: 0.004
-  flickerIntensity: 0.0007
-  minTimeBetweenFlickers: 0.5
-  maxTimeBetweenFlickers: 0.9
-  flickerDuration: 0.08
-  randomizeFlickerDuration: 1
+  lights: []
+  minFlickerMultiplier: 0
+  maxFlickerMultiplier: 0.2
+  minTimeBetweenBursts: 2.5
+  maxTimeBetweenBursts: 4
+  burstDuration: 0.6
+  randomizeBurstDuration: 1
+  minBurstDuration: 0.45
+  maxBurstDuration: 0.75
+  minStepTime: 0.14
+  maxStepTime: 0.22
+  allowFullBlackoutDip: 1
+  blackoutChance: 0.8
+  randomizeInitialOffset: 1
 --- !u!1001 &2143358333
 PrefabInstance:
   m_ObjectHideFlags: 0

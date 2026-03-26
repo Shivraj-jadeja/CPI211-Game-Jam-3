@@ -13,11 +13,18 @@ public class mainMenuStart : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 keyPressed = true;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(4);
             }
 
             // loads themes scene
             if (Input.GetKeyDown(KeyCode.H))
+            {
+                keyPressed = true;
+                SceneManager.LoadScene(2);
+            }
+
+            //Control
+            if (Input.GetKeyDown(KeyCode.B))
             {
                 keyPressed = true;
                 SceneManager.LoadScene(3);
