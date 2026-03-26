@@ -10,21 +10,36 @@ public class MonsterChaseTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("[Trigger] Entered by: " + other.name + " | Tag: " + other.tag);
+
         if (triggered)
             return;
 
         if (other.CompareTag("Player"))
         {
+            Debug.Log("[Trigger] Player entered chase trigger");
             triggered = true;
-            StartCoroutine(StartChaseWithDelay());
+            StartCoroutine(StartChaseSequence());
+        }
+        else
+        {
+            Debug.Log("[Trigger] Not player, ignored");
         }
     }
 
-    IEnumerator StartChaseWithDelay()
+    IEnumerator StartChaseSequence()
     {
+        Debug.Log("[Trigger] Waiting " + delayBeforeChase + " seconds before scream/chase");
         yield return new WaitForSeconds(delayBeforeChase);
 
         if (monsterChase != null)
-            monsterChase.StartChase();
+        {
+            Debug.Log("[Trigger] Calling StartScreamThenChase()");
+            monsterChase.StartScreamThenChase();
+        }
+        else
+        {
+            Debug.LogError("[Trigger] monsterChase reference is NULL");
+        }
     }
 }
