@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Video;
 
 public class SyringeInteract : MonoBehaviour
 {
@@ -12,9 +13,16 @@ public class SyringeInteract : MonoBehaviour
     public float range = 5f;
     public LayerMask Patient;
     public AudioSource AudioSource;
+    public VideoPlayer vid;
+    public VideoClip dead_oldman;
+    public VideoClip bedguy_dead;
+    public VideoClip nurse_die;
+    public VideoClip girldead;
+    private MonoBehaviour FPSController;
     private void Awake()
     {
         startLocalPos = transform.localPosition;
+        vid.loopPointReached += OnVideoFinished;
     }
 
     // Update is called once per frame
@@ -66,6 +74,22 @@ public class SyringeInteract : MonoBehaviour
         {
             Debug.Log("Hit: " + hit.collider.name + " at distance: " + hit.distance);
             AudioSource.Play();
+            if (hit.collider.CompareTag("POld"))
+            {
+                PlayVideo(dead_oldman);
+            }
+            if (hit.collider.CompareTag("PBed"))
+            {
+                PlayVideo(bedguy_dead);
+            }
+            if (hit.collider.CompareTag("PNurse"))
+            {
+                PlayVideo(nurse_die);
+            }
+            if (hit.collider.CompareTag("PWoman"))
+            {
+                PlayVideo(girldead);
+            }
         }
         else
         {
@@ -73,5 +97,28 @@ public class SyringeInteract : MonoBehaviour
         }
 
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * range, Color.red, 1f);
+    }
+    void PlayVideo(VideoClip clip)
+    {
+        if (clip == null) return;
+
+        vid.gameObject.SetActive(true);
+
+        vid.Stop();
+        vid.clip = clip;
+        FPSController = GetComponent<MonoBehaviour>();
+        FPSController.enabled = false;
+        vid.Play();
+    }
+    void OnVideoFinished(VideoPlayer vp)
+    {
+        vid.Stop();
+
+        // Hide the video (depends how you're displaying it)
+        vid.gameObject.SetActive(false);
+
+        // Re-enable player control
+        if (FPSController != null)
+            FPSController.enabled = true;
     }
 }
