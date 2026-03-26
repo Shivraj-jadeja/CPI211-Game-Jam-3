@@ -28178,8 +28178,8 @@ Transform:
   m_GameObject: {fileID: 246577848}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.81, y: 0.52, z: -26.92}
-  m_LocalScale: {x: 10, y: 3, z: 1}
+  m_LocalPosition: {x: -1.6, y: 0.3582481, z: 27.64}
+  m_LocalScale: {x: 5, y: 5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 908189279}
@@ -192229,7 +192229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SyringeInteract
   distance: 0.2
   duration: 0.6
-  range: 5
+  range: 2.5
   Patient:
     serializedVersion: 2
     m_Bits: 192
@@ -192238,7 +192238,7 @@ MonoBehaviour:
   dead_oldman: {fileID: 32900000, guid: 51d7fb264089d144d986d62c40c02acc, type: 3}
   bedguy_dead: {fileID: 32900000, guid: 28e25bbd7566fb145947f526fcb42050, type: 3}
   nurse_die: {fileID: 32900000, guid: e832fab6ab700c14584d39439ff8f4a4, type: 3}
-  girldead: {fileID: 0}
+  girldead: {fileID: 32900000, guid: 24333df151b77c248a94eda8734d8c3a, type: 3}
 --- !u!1001 &1618358075
 PrefabInstance:
   m_ObjectHideFlags: 0
