@@ -14,6 +14,11 @@ public class SimpleMonsterChase : MonoBehaviour
     public Transform monsterLookTarget;
     public Transform monsterVisual;
 
+    [Header("Keycard Trigger")]
+    public Transform holdPoint;
+    public Transform keycard;
+    public bool triggerChaseOnceWhenKeycardHeld = true;
+
     [Header("Visual Rotation")]
     public float idleModelYRotation = 90f;
     public float chaseModelYRotation = 20f;
@@ -40,12 +45,14 @@ public class SimpleMonsterChase : MonoBehaviour
     public float shakeAmount = 0.04f;
     public float shakeSpeed = 25f;
 
-    [Header("Audio")]
-    public AudioSource stepAudio;
+    [Header("Monster Audio")]
+    public AudioSource screamAudio;
+    public AudioSource footstepAudio;
 
     private float timer;
     private bool isAttacking = false;
     private bool isScreaming = false;
+    private bool chaseTriggeredByKeycard = false;
     private Vector3 cameraLocalStartPos;
 
     void Start()
@@ -74,6 +81,12 @@ public class SimpleMonsterChase : MonoBehaviour
         if (freezeAnimatorUntilChase && animator != null)
             animator.speed = 0f;
 
+        if (footstepAudio != null)
+            footstepAudio.Stop();
+
+        if (screamAudio != null)
+            screamAudio.Stop();
+
         if (agent == null)
         {
             Debug.LogError("[Monster] NavMeshAgent is NULL");
@@ -101,6 +114,8 @@ public class SimpleMonsterChase : MonoBehaviour
 
     void Update()
     {
+        CheckKeycardTrigger();
+
         if (!chaseActive)
             return;
 
@@ -135,6 +150,34 @@ public class SimpleMonsterChase : MonoBehaviour
         }
 
         RotateTowardsMovement();
+        SetModelYRotation(chaseModelYRotation);
+
+        if (footstepAudio != null && !footstepAudio.isPlaying)
+            footstepAudio.Play();
+    }
+
+    void CheckKeycardTrigger()
+    {
+        if (!triggerChaseOnceWhenKeycardHeld)
+            return;
+
+        if (chaseTriggeredByKeycard)
+            return;
+
+        if (PlayerHasHeldKeycard())
+        {
+            chaseTriggeredByKeycard = true;
+            Debug.Log("[Monster] Keycard detected in hold point -> scream then chase");
+            StartScreamThenChase();
+        }
+    }
+
+    bool PlayerHasHeldKeycard()
+    {
+        if (holdPoint == null || keycard == null)
+            return false;
+
+        return keycard.IsChildOf(holdPoint);
     }
 
     public void StartScreamThenChase()
@@ -155,6 +198,9 @@ public class SimpleMonsterChase : MonoBehaviour
         Debug.Log("[Monster] Scream routine started");
         isScreaming = true;
         chaseActive = false;
+
+        if (footstepAudio != null)
+            footstepAudio.Stop();
 
         if (agent != null)
         {
@@ -178,6 +224,9 @@ public class SimpleMonsterChase : MonoBehaviour
             Debug.LogWarning("[Monster] Animator missing");
         }
 
+        if (screamAudio != null)
+            screamAudio.Play();
+
         yield return new WaitForSeconds(screamDuration / screamAnimationSpeed);
 
         Debug.Log("[Monster] Scream finished -> StartChase()");
@@ -191,8 +240,8 @@ public class SimpleMonsterChase : MonoBehaviour
         chaseActive = false;
         isScreaming = false;
 
-        if (stepAudio != null)
-            stepAudio.Pause();
+        if (footstepAudio != null)
+            footstepAudio.Stop();
 
         if (agent != null)
         {
@@ -270,20 +319,20 @@ public class SimpleMonsterChase : MonoBehaviour
 
         chaseActive = true;
 
-        if (stepAudio != null)
-            stepAudio.Play();
-
         if (agent != null)
             agent.isStopped = false;
 
         if (animator != null)
             animator.speed = 1f;
+
+        if (footstepAudio != null && !footstepAudio.isPlaying)
+            footstepAudio.Play();
     }
 
     public void StopChase()
     {
-        if (stepAudio != null)
-            stepAudio.Pause();
+        if (footstepAudio != null)
+            footstepAudio.Stop();
 
         chaseActive = false;
         isScreaming = false;

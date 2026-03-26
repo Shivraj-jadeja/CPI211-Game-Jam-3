@@ -77,7 +77,7 @@ public class PickupLook : MonoBehaviour
     transform.localPosition = Vector3.zero;
 
     // Angled so player sees the whole object better
-    transform.localRotation = Quaternion.Euler(20f, 90f, -25f);
+    transform.localRotation = Quaternion.Euler(-11.886f, 62.13f, -20.21f);
 }
 
     void DropItem()
